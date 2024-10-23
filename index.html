@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Destination Showcase</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for better visuals */
+        .destination-card {
+            margin-bottom: 30px;
+        }
+        .destination-details {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .star-rating {
+            margin: 10px 0;
+        }
+        .star {
+            cursor: pointer;
+            font-size: 20px;
+            color: gold;
+        }
+        .reviews {
+            margin-top: 15px;
+        }
+        .review {
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        h4 {
+            margin-top: 20px;
+        }
+        .sub-attraction {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px; /* Space between sub-attractions */
+        }
+        .sub-attraction img {
+            max-width: 200px; /* Limit image width */
+            margin-left: 20px; /* Space between text and image */
+            border-radius: 5px; /* Rounded corners for images */
+        }
+        .sub-attraction .description {
+            flex: 1; /* Take remaining space */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Travel Explorer</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#intro">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#destinations">Destinations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="intro" class="view">
+        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+            <div class="text-center text-white">
+                <h1 class="display-4">Discover Your Next Adventure</h1>
+                <p>Travel is the only thing you buy that makes you richer.</p>
+                <a href="#destinations" class="btn btn-light btn-lg">Start Exploring</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Destinations Section -->
+    <section id="destinations" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Popular Destinations</h2>
+            <div class="row">
+                <!-- Bali Destination -->
+                <div class="col-md-4">
+                    <div class="card destination-card">
+                        <img src="bali.png" class="card-img-top" alt="Bali">
+                        <div class="card-body">
+                            <h5 class="card-title">Bali, Indonesia</h5>
+                            <p class="card-text">A tropical paradise known for its stunning beaches, rich culture, and vibrant nightlife.</p>
+                            <button class="btn btn-primary" onclick="showDetails('bali')">Explore</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Paris Destination -->
+                <div class="col-md-4">
+                    <div class="card destination-card">
+                        <img src="effiel tower.png" class="card-img-top" alt="Paris">
+                        <div class="card-body">
+                            <h5 class="card-title">Paris, France</h5>
+                            <p class="card-text">The city of love, famous for its art, fashion, and the iconic Eiffel Tower.</p>
+                            <button class="btn btn-primary" onclick="showDetails('paris')">Explore</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tokyo Destination -->
+                <div class="col-md-4">
+                    <div class="card destination-card">
+                        <img src="tokyo.png" class="card-img-top" alt="Tokyo">
+                        <div class="card-body">
+                            <h5 class="card-title">Tokyo, Japan</h5>
+                            <p class="card-text">A bustling metropolis known for its modern architecture, delicious cuisine, and rich history.</p>
+                            <button class="btn btn-primary" onclick="showDetails('tokyo')">Explore</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Visakhapatnam Destination -->
+                <div class="col-md-4">
+                    <div class="card destination-card">
+                        <img src="vizag.jpg" class="card-img-top" alt="Visakhapatnam">
+                        <div class="card-body">
+                            <h5 class="card-title">Visakhapatnam, India</h5>
+                            <p class="card-text">A coastal city with stunning beaches, temples, and rich cultural history.</p>
+                            <button class="btn btn-primary" onclick="showDetails('visakhapatnam')">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destination Details Section -->
+    <section id="destination-details" class="py-5" style="display: none;">
+        <div class="container">
+            <h2 class="text-center mb-4">Destination Details</h2>
+            <div id="details-content"></div>
+            <button class="btn btn-secondary mt-3" onclick="hideDetails()">Back</button>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="bg-primary text-white py-4">
+        <div class="container text-center">
+            <p>Contact us: info@travelexplorer.com | +123 456 7890</p>
+            <p>&copy; 2024 Travel Explorer. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentRating = 0; // Variable to store the current rating
+
+        function showDetails(location) {
+            const detailsContent = document.getElementById('details-content');
+            let content = '';
+
+            if (location === 'bali') {
+                content = `
+                    <div class="destination-details">
+                        <h3>Bali, Indonesia</h3>
+                        <div class="star-rating">
+                            <span class="star" data-value="1" onclick="setRating(event, 'bali')">★</span>
+                            <span class="star" data-value="2" onclick="setRating(event, 'bali')">★</span>
+                            <span class="star" data-value="3" onclick="setRating(event, 'bali')">★</span>
+                            <span class="star" data-value="4" onclick="setRating(event, 'bali')">★</span>
+                            <span class="star" data-value="5" onclick="setRating(event, 'bali')">★</span>
+                        </div>
+                        <div class="reviews" id="bali-reviews"></div>
+                        <h4>Leave a Comment:</h4>
+                        <textarea rows="3" class="form-control" placeholder="Your comment here..." id="bali-comment"></textarea>
+                        <button class="btn btn-success mt-2" onclick="submitComment('bali')">Submit</button>
+                        <ul>
+                            <li><strong>Ubud:</strong> A cultural hub with beautiful rice terraces and art markets.</li>
+                            <li><strong>Seminyak Beach:</strong> A stunning beach with lively nightlife and resorts.</li>
+                            <li><strong>Mount Batur:</strong> A volcano offering a sunrise hike experience.</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (location === 'paris') {
+                content = `
+                    <div class="destination-details">
+                        <h3>Paris, France</h3>
+                        <div class="star-rating">
+                            <span class="star" data-value="1" onclick="setRating(event, 'paris')">★</span>
+                            <span class="star" data-value="2" onclick="setRating(event, 'paris')">★</span>
+                            <span class="star" data-value="3" onclick="setRating(event, 'paris')">★</span>
+                            <span class="star" data-value="4" onclick="setRating(event, 'paris')">★</span>
+                            <span class="star" data-value="5" onclick="setRating(event, 'paris')">★</span>
+                        </div>
+                        <div class="reviews" id="paris-reviews"></div>
+                        <h4>Leave a Comment:</h4>
+                        <textarea rows="3" class="form-control" placeholder="Your comment here..." id="paris-comment"></textarea>
+                        <button class="btn btn-success mt-2" onclick="submitComment('paris')">Submit</button>
+                        <ul>
+                            <li><strong>Eiffel Tower:</strong> The iconic symbol of Paris.</li>
+                            <li><strong>Louvre Museum:</strong> Home to thousands of works of art, including the Mona Lisa.</li>
+                            <li><strong>Montmartre:</strong> A charming neighborhood with stunning views.</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (location === 'tokyo') {
+                content = `
+                    <div class="destination-details">
+                        <h3>Tokyo, Japan</h3>
+                        <div class="star-rating">
+                            <span class="star" data-value="1" onclick="setRating(event, 'tokyo')">★</span>
+                            <span class="star" data-value="2" onclick="setRating(event, 'tokyo')">★</span>
+                            <span class="star" data-value="3" onclick="setRating(event, 'tokyo')">★</span>
+                            <span class="star" data-value="4" onclick="setRating(event, 'tokyo')">★</span>
+                            <span class="star" data-value="5" onclick="setRating(event, 'tokyo')">★</span>
+                        </div>
+                        <div class="reviews" id="tokyo-reviews"></div>
+                        <h4>Leave a Comment:</h4>
+                        <textarea rows="3" class="form-control" placeholder="Your comment here..." id="tokyo-comment"></textarea>
+                        <button class="btn btn-success mt-2" onclick="submitComment('tokyo')">Submit</button>
+                        <ul>
+                            <li><strong>Shibuya Crossing:</strong> The famous scramble crossing in the heart of Tokyo.</li>
+                            <li><strong>Senso-ji Temple:</strong> Tokyo's oldest temple located in Asakusa.</li>
+                            <li><strong>Tokyo Skytree:</strong> The tallest structure in Japan with observation decks.</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (location === 'visakhapatnam') {
+    content = `
+        <div class="destination-details">
+            <h3>Visakhapatnam, India</h3>
+            <div class="star-rating">
+                <span class="star" data-value="1" onclick="setRating(event, 'visakhapatnam')">★</span>
+                <span class="star" data-value="2" onclick="setRating(event, 'visakhapatnam')">★</span>
+                <span class="star" data-value="3" onclick="setRating(event, 'visakhapatnam')">★</span>
+                <span class="star" data-value="4" onclick="setRating(event, 'visakhapatnam')">★</span>
+                <span class="star" data-value="5" onclick="setRating(event, 'visakhapatnam')">★</span>
+            </div>
+            <div class="reviews" id="vizag-reviews"></div>
+            <h4>Leave a Comment:</h4>
+            <textarea rows="3" class="form-control" placeholder="Your comment here..." id="vizag-comment"></textarea>
+            <button class="btn btn-success mt-2" onclick="submitComment('visakhapatnam')">Submit</button>
+            
+            <div class="sub-attraction">
+                <div class="description">
+                    <strong>Borra Caves:</strong> A stunning network of caves formed by the Gosthani River.
+                    <div class="reviews" id="borra-reviews"></div>
+                    <h5>Leave a Comment:</h5>
+                    <textarea rows="2" class="form-control" placeholder="Your comment here..." id="borra-comment"></textarea>
+                    <button class="btn btn-success mt-2" onclick="submitSubComment('borra')">Submit</button>
+                </div>
+                <img src="borra caves.jpg" alt="Borra Caves" class="img-fluid">
+            </div>
+            <div class="sub-attraction">
+                <div class="description">
+                    <strong>Kailasagiri Hill:</strong> Offers panoramic views of the city and the sea.
+                    <div class="reviews" id="kailasagiri-reviews"></div>
+                    <h5>Leave a Comment:</h5>
+                    <textarea rows="2" class="form-control" placeholder="Your comment here..." id="kailasagiri-comment"></textarea>
+                    <button class="btn btn-success mt-2" onclick="submitSubComment('kailasagiri')">Submit</button>
+                </div>
+                <img src="kailashgiri.jpg" alt="Kailasagiri Hill" class="img-fluid">
+            </div>
+            <div class="sub-attraction">
+                <div class="description">
+                    <strong>Submarine Museum:</strong> A unique museum showcasing a real submarine.
+                    <div class="reviews" id="submarine-reviews"></div>
+                    <h5>Leave a Comment:</h5>
+                    <textarea rows="2" class="form-control" placeholder="Your comment here..." id="submarine-comment"></textarea>
+                    <button class="btn btn-success mt-2" onclick="submitSubComment('submarine')">Submit</button>
+                </div>
+                <img src="submarine.jpg" alt="Submarine Museum" class="img-fluid">
+            </div>
+            <div class="sub-attraction">
+                <div class="description">
+                    <strong>Rose Hill Church:</strong> A church with a beautiful view of the city and sea.
+                    <div class="reviews" id="rose-reviews"></div>
+                    <h5>Leave a Comment:</h5>
+                    <textarea rows="2" class="form-control" placeholder="Your comment here..." id="rose-comment"></textarea>
+                    <button class="btn btn-success mt-2" onclick="submitSubComment('rose')">Submit</button>
+                </div>
+                <img src="rose hill church.jpg" alt="Rose Hill Church" class="img-fluid">
+            </div>
+            <div class="sub-attraction">
+                <div class="description">
+                    <strong>Indra Gandhi Zoological Park:</strong> A must-visit for wildlife lovers.
+                    <div class="reviews" id="zoo-reviews"></div>
+                    <h5>Leave a Comment:</h5>
+                    <textarea rows="2" class="form-control" placeholder="Your comment here..." id="zoo-comment"></textarea>
+                    <button class="btn btn-success mt-2" onclick="submitSubComment('zoo')">Submit</button>
+                </div>
+                <img src="zoo.jpg" alt="Indra Gandhi Zoological Park" class="img-fluid">
+            </div>
+        </div>
+    `;
+}
+
+            detailsContent.innerHTML = content;
+            document.getElementById('destination-details').style.display = 'block';
+            document.getElementById('destinations').style.display = 'none';
+        }
+
+        function hideDetails() {
+            document.getElementById('destination-details').style.display = 'none';
+            document.getElementById('destinations').style.display = 'block';
+        }
+
+        function setRating(event, location) {
+            const selectedStar = event.target;
+            const rating = selectedStar.getAttribute('data-value');
+            const ratingStars = selectedStar.parentElement.children;
+
+            // Update star display
+            for (let i = 0; i < ratingStars.length; i++) {
+                if (i < rating) {
+                    ratingStars[i].style.color = 'gold'; // Highlight selected stars
+                } else {
+                    ratingStars[i].style.color = ''; // Reset other stars
+                }
+            }
+
+            currentRating = rating; // Set current rating
+            alert(`You rated this ${rating} stars!`); // This can be modified to save the rating
+        }
+
+        function submitComment(location) {
+            const commentTextarea = document.getElementById(`${location}-comment`);
+            const comment = commentTextarea.value.trim();
+            if (comment) {
+                const reviewsDiv = document.getElementById(`${location}-reviews`);
+                const newComment = document.createElement('div');
+                newComment.classList.add('review');
+                newComment.innerHTML = `<strong>Rating: ${currentRating} stars</strong><br>${comment}`;
+                reviewsDiv.appendChild(newComment);
+                commentTextarea.value = ''; // Clear the textarea after submission
+                currentRating = 0; // Reset the current rating
+                resetStars(location); // Reset star ratings display
+            } else {
+                alert('Please enter a comment before submitting.');
+            }
+        }
+
+        function resetStars(location) {
+            const ratingStars = document.querySelectorAll(`#${location} .star`);
+            for (let i = 0; i < ratingStars.length; i++) {
+                ratingStars[i].style.color = ''; // Reset star colors
+            }
+        }
+    </script>
+</body>
+</html>
